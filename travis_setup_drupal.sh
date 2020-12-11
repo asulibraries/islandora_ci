@@ -20,7 +20,7 @@ phpcs --config-set installed_paths /opt/utils/vendor/drupal/coder/coder_sniffer
 
 echo "Composer install drupal site"
 cd /opt
-composer create-project drupal/recommended-project:8.9.11 drupal
+composer create-project drupal/recommended-project:9.1.0 drupal
 cd drupal
 if [ -z "$COMPOSER_PATH" ]; then
   composer install
