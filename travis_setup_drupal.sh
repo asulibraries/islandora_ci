@@ -3,21 +3,6 @@ echo "Setup database for Drupal"
 mysql -u root -e 'create database drupal;'
 mysql -u root -e "GRANT ALL PRIVILEGES ON drupal.* To 'drupal'@'127.0.0.1' IDENTIFIED BY 'drupal';"
 
-echo "Install utilities needed for testing"
-mkdir /opt/utils
-cd /opt/utils
-if [ -z "$COMPOSER_PATH" ]; then
-  composer require drupal/coder ^8.3.5
-  composer require sebastian/phpcpd ^4.1
-else
-  php -dmemory_limit=-1 $COMPOSER_PATH require drupal/coder ^8.3.5
-  php -dmemory_limit=-1 $COMPOSER_PATH require sebastian/phpcpd ^4.1
-fi
-sudo ln -s /opt/utils/vendor/bin/phpcs /usr/bin/phpcs
-sudo ln -s /opt/utils/vendor/bin/phpcpd /usr/bin/phpcpd
-phpenv rehash
-phpcs --config-set installed_paths /opt/utils/vendor/drupal/coder/coder_sniffer
-
 echo "Composer install drupal site"
 cd /opt
 composer create-project drupal/recommended-project:9.1.0 drupal
@@ -28,9 +13,11 @@ else
   php -dmemory_limit=-1 $COMPOSER_PATH install
 fi
 
-composer require phpunit/phpunit:^9
-composer require squizlabs/php_codesniffer:^3.0
-composer require sebastian/phpcpd:^6
+sudo ln -s /opt/vendor/bin/phpcs /usr/bin/phpcs
+sudo ln -s /opt/vendor/bin/phpcpd /usr/bin/phpcpd
+phpenv rehash
+phpcs --config-set installed_paths /opt/vendor/drupal/coder/coder_sniffer
+
 composer require drush/drush
 echo "Setup Drush"
 sudo ln -s /opt/drupal/vendor/bin/drush /usr/bin/drush
