@@ -28,6 +28,9 @@ else
   php -dmemory_limit=-1 $COMPOSER_PATH install
 fi
 
+composer require phpunit/phpunit:^9
+composer require squizlabs/php_codesniffer:^3.0
+composer require sebastian/phpcpd:^6
 composer require drush/drush
 echo "Setup Drush"
 sudo ln -s /opt/drupal/vendor/bin/drush /usr/bin/drush
