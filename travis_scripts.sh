@@ -16,7 +16,7 @@ checkReturn $?
 phpcs --standard=Drupal --ignore=*.md --extensions=php,module,inc,install,test,profile,theme,css,info $TRAVIS_BUILD_DIR
 checkReturn $?
 
-phpcpd --names *.module,*.inc,*.test,*.php $TRAVIS_BUILD_DIR
+phpcpd --suffix *.module,*.inc,*.test,*.php $TRAVIS_BUILD_DIR
 checkReturn $?
 
 exit $OUTPUT
