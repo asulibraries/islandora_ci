@@ -9,11 +9,11 @@ cd /opt/utils
 if [ -z "$COMPOSER_PATH" ]; then
   composer require drupal/coder ^8.3.11
   composer require sebastian/phpcpd ^6
-  composer require phpunit/phpunit ^9.1
+  composer require phpunit/phpunit ^7
 else
   php -dmemory_limit=-1 $COMPOSER_PATH require drupal/coder ^8.3.11
   php -dmemory_limit=-1 $COMPOSER_PATH require sebastian/phpcpd ^6
-  php -dmemory_limit=-1 $COMPOSER_PATH require phpunit/phpunit ^9.1
+  php -dmemory_limit=-1 $COMPOSER_PATH require phpunit/phpunit ^7
 fi
 sudo ln -s /opt/utils/vendor/bin/phpcs /usr/bin/phpcs
 sudo ln -s /opt/utils/vendor/bin/phpcpd /usr/bin/phpcpd
