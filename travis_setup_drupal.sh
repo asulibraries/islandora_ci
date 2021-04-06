@@ -34,7 +34,7 @@ else
 fi
 
 composer require "drupal/core-dev:$DRUPAL_VERSION"
-composer require phpspec/prophecy-phpunit:^2
+composer require phpspec/prophecy-phpunit:^2 -W
 composer require drush/drush
 echo "Setup Drush"
 sudo ln -s /opt/drupal/vendor/bin/drush /usr/bin/drush
